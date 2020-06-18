@@ -19,9 +19,10 @@ const Form = () => {
 
     const [sortAsc, setSortAsc] = useState(false)
     const [sortDesc, setSortDesc] = useState(true)
-    const [sortScore, setSortScore] = useState(true)
-    const [sortCreated, setSortCreated] = useState(false)
-    const [sortNumComments, setSortNumComments] = useState(false)
+    const [sortType, setSortType] = useState("score")
+    // const [sortScore, setSortScore] = useState(true)
+    // const [sortCreated, setSortCreated] = useState(false)
+    // const [sortNumComments, setSortNumComments] = useState(false)
 
     const [isLoading, setIsLoading] = useState(false)
     const [apiResponse, setAPIResponse] = useState([])
@@ -36,6 +37,7 @@ const Form = () => {
         if (name === "size") { setSize(value) }
         if (name === "after") { setAfter(value) }
         if (name === "before") { setBefore(value) }
+        if (name === "sortType") { setSortType(value) }
         if (name === "sort") {
             if (value === "desc") {
                 setSortDesc(true)
@@ -56,23 +58,6 @@ const Form = () => {
             }
         }
 
-        if (name === "sortType") {
-            if (value === "score") {
-                setSortScore(true)
-                setSortCreated(false)
-                setSortNumComments(false)
-            }
-            else if (value === "createdDate") {
-                setSortScore(false)
-                setSortCreated(true)
-                setSortNumComments(false)
-            } else {
-                setSortScore(false)
-                setSortCreated(false)
-                setSortNumComments(true)
-            }
-        }
-
     }
 
     const apiQuery = (event) => {
@@ -84,9 +69,6 @@ const Form = () => {
             "https://api.pushshift.io/reddit/search/comment"
 
         const sortAscOrDesc = sortDesc ? "desc" : "asc"
-        const sortType = sortScore ?
-            "score" :
-            sortNumComments ? "num_comments" : "created_utc"
 
         axios.get(apiEndPoint, {
             params: {
@@ -112,13 +94,13 @@ const Form = () => {
 
     }
 
-    const apiResponseArray =    searchSubmissions ?
-                                apiResponse.map(data => <Post key={data.id} data={data} />) :
-                                apiResponse.map(data => <Comment key={data.id} data={data} />)
+    const apiResponseArray = searchSubmissions ?
+        apiResponse.map(data => <Post key={data.id} data={data} />) :
+        apiResponse.map(data => <Comment key={data.id} data={data} />)
 
     return (
         <form onSubmit={apiQuery}>
-            <label>Search Type </label>
+            {/* <label>Search Type </label>
             <label>
                 <input type="radio" name="searchType" onChange={handleChange} value="submissions" checked={searchSubmissions} />
                 Posts
@@ -126,7 +108,7 @@ const Form = () => {
             <label>
                 <input type="radio" name="searchType" onChange={handleChange} value="comments" checked={searchComments} />
                 Comments
-            </label>
+            </label> */}
             <br />
             <label>Author </label>
             <input type="text" name="author" onChange={handleChange} value={author} />
@@ -160,20 +142,13 @@ const Form = () => {
             </label>
             <br />
             <label>Sort Type </label>
-            <label>
-                <input type="radio" name="sortType" onChange={handleChange} value="score" checked={sortScore} />
-                Score
-            </label>
-            <label>
-                <input type="radio" name="sortType" onChange={handleChange} value="createdDate" checked={sortCreated} />
-                Created Date
-            </label>
-            <label>
-                <input type="radio" name="sortType" onChange={handleChange} value="numComments" checked={sortNumComments} />
-                Number of Comments
-            </label>
+            <select name="sortType" onChange={handleChange} value={sortType}>
+                <option value="score">Score</option>
+                <option value="num_comments">Number of Comments</option>
+                <option value="created_utc">Created Date</option>
+            </select>
 
-
+            <br />
             <button>Search</button>
             <br />
             <div>

@@ -21,7 +21,7 @@ const Comment = (props) => {
             .catch((error) => {
                 console.log(error)
             })
-    }, [])
+    }, [data.link_id, data.id])
 
     return (
         <div className="Comment">
