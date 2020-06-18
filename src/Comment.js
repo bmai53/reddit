@@ -13,15 +13,15 @@ const Comment = (props) => {
     let commentDate = new Date(data.created_utc * 1000)
     commentDate = commentDate.getFullYear().toString() + '/' + commentDate.getMonth().toString() + '/' + commentDate.getDate().toString()
 
-    useEffect(() => {
-        axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${data.link_id}`)
-            .then((response) => {
-                setCommentLink(response.data.data[0].full_link + data.id)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [data.link_id, data.id])
+    // useEffect(() => {
+    //     axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${data.link_id}`)
+    //         .then((response) => {
+    //             setCommentLink(response.data.data[0].full_link + data.id)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }, [data.link_id, data.id])
 
     return (
         <div className="Comment">
@@ -36,7 +36,7 @@ const Comment = (props) => {
             </p>
             <p>{data.body}</p>
             <p className="Date">Posted on {commentDate.toString()}</p>
-            <a href={commentLink}>link</a>
+            <a href={props.commentLink + data.id}>link</a>
         </div>
     )
 }

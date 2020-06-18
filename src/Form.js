@@ -7,7 +7,6 @@ import Comment from './Comment'
 const Form = () => {
 
     const [searchSubmissions, setSearchSubmissions] = useState(true)
-    // const [searchComments, setSearchComments] = useState(false)
 
     const [author, setAuthor] = useState("")
     const [title, setTitle] = useState("")
@@ -25,6 +24,7 @@ const Form = () => {
     const [apiResponse, setAPIResponse] = useState([])
 
     const [contentList, setContentList] = useState([])
+    const [commentLinkList, setCommentLinkList] = useState([])
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -83,22 +83,45 @@ const Form = () => {
             .then((response) => {
                 setAPIResponse(response.data.data)
                 console.log(response.data.data)
-                setIsLoading(false)
             })
             .catch((error) => {
                 console.log(error)
             })
 
+        // getting comment links
+        if (!searchSubmissions) {
+            const linkIdList = apiResponse.map(data => data.link_id)
+            const linkIdString = linkIdList.join(',')
+            axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${linkIdString}&size=${size}`)
+                .then((response) => {
+                    const newCommentLinkList = response.data.data.map(data => data.full_link)
+                    setCommentLinkList(newCommentLinkList)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     }
 
-    useEffect( ()=> {
-        const newContentList =  searchSubmissions ?
-                                apiResponse.map(data => <Post key={data.id} data={data} />) :
-                                apiResponse.map(data => <Comment key={data.id} data={data} />)
-        setContentList(newContentList)
-    }, [apiResponse])
+    // set component array
     // known warning to include searchSubmissions inside dependency array, 
     // but the whole point of using useEffect was so that the contentList would no rerender after selecting another searchType
+    useEffect(() => {
+        if (searchSubmissions) {
+            const newSubmissions = apiResponse.map(data => <Post key={data.id} data={data} />)
+            setContentList(newSubmissions)
+            setIsLoading(false)
+        }
+    }, [apiResponse])
+
+    useEffect(() => {
+        if (!searchSubmissions) {
+            const newComments = apiResponse.map((data, index) => <Comment key={data.id} data={data} commentLink={commentLinkList[index]} />)
+            setContentList(newComments)
+            setIsLoading(false)
+        }
+    }, [commentLinkList])
+
 
     return (
         <form onSubmit={apiQuery}>
