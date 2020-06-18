@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import loading from './loading.svg'
 import Post from './Post'
@@ -7,7 +7,7 @@ import Comment from './Comment'
 const Form = () => {
 
     const [searchSubmissions, setSearchSubmissions] = useState(true)
-    const [searchComments, setSearchComments] = useState(false)
+    // const [searchComments, setSearchComments] = useState(false)
 
     const [author, setAuthor] = useState("")
     const [title, setTitle] = useState("")
@@ -20,12 +20,11 @@ const Form = () => {
     const [sortAsc, setSortAsc] = useState(false)
     const [sortDesc, setSortDesc] = useState(true)
     const [sortType, setSortType] = useState("score")
-    // const [sortScore, setSortScore] = useState(true)
-    // const [sortCreated, setSortCreated] = useState(false)
-    // const [sortNumComments, setSortNumComments] = useState(false)
 
     const [isLoading, setIsLoading] = useState(false)
     const [apiResponse, setAPIResponse] = useState([])
+
+    const [contentList, setContentList] = useState([])
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -51,10 +50,8 @@ const Form = () => {
         if (name === "searchType") {
             if (value === "submissions") {
                 setSearchSubmissions(true)
-                setSearchComments(false)
             } else {
                 setSearchSubmissions(false)
-                setSearchComments(true)
             }
         }
 
@@ -94,21 +91,26 @@ const Form = () => {
 
     }
 
-    const apiResponseArray = searchSubmissions ?
-        apiResponse.map(data => <Post key={data.id} data={data} />) :
-        apiResponse.map(data => <Comment key={data.id} data={data} />)
+    useEffect( ()=> {
+        const newContentList =  searchSubmissions ?
+                                apiResponse.map(data => <Post key={data.id} data={data} />) :
+                                apiResponse.map(data => <Comment key={data.id} data={data} />)
+        setContentList(newContentList)
+    }, [apiResponse])
+    // known warning to include searchSubmissions inside dependency array, 
+    // but the whole point of using useEffect was so that the contentList would no rerender after selecting another searchType
 
     return (
         <form onSubmit={apiQuery}>
-            {/* <label>Search Type </label>
+            <label>Search Type </label>
             <label>
                 <input type="radio" name="searchType" onChange={handleChange} value="submissions" checked={searchSubmissions} />
                 Posts
             </label>
             <label>
-                <input type="radio" name="searchType" onChange={handleChange} value="comments" checked={searchComments} />
+                <input type="radio" name="searchType" onChange={handleChange} value="comments" checked={!searchSubmissions} />
                 Comments
-            </label> */}
+            </label>
             <br />
             <label>Author </label>
             <input type="text" name="author" onChange={handleChange} value={author} />
@@ -152,7 +154,7 @@ const Form = () => {
             <button>Search</button>
             <br />
             <div>
-                {isLoading ? <img src={loading} alt="loading"></img> : apiResponseArray}
+                {isLoading ? <img src={loading} alt="loading"></img> : contentList}
             </div>
         </form>
     )

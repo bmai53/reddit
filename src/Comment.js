@@ -10,7 +10,7 @@ const Comment = (props) => {
 
     const data = props.data
 
-    let commentDate = new Date(data.author_created_utc * 1000)
+    let commentDate = new Date(data.created_utc * 1000)
     commentDate = commentDate.getFullYear().toString() + '/' + commentDate.getMonth().toString() + '/' + commentDate.getDate().toString()
 
     useEffect(() => {
