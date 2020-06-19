@@ -3,8 +3,17 @@
     margin: 10px 10px 10px 10px;
     padding: 25px;
     font-size: calc(10px + 1vmin);
+    width: 50vw;
+    min-height: 10vh;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;  */
 }
 
 .PreviewImage{
     float: left;
+}
+
+.Link{
+    float: right;
 }

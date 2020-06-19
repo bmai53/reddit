@@ -4,8 +4,6 @@ import loading from './images/loading.svg'
 import Post from './Post'
 import Comment from './Comment'
 
-import { usePrevious } from './usePrevious'
-
 const Form = () => {
 
     const [searchSubmissions, setSearchSubmissions] = useState(true)
@@ -26,7 +24,6 @@ const Form = () => {
     const [apiResponse, setAPIResponse] = useState([])
 
     const [contentList, setContentList] = useState([])
-    // const [commentLinkList, setCommentLinkList] = useState([])
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -101,30 +98,43 @@ const Form = () => {
             setIsLoading(false)
         }
         else {
-            const data = response.data.data
-            const commentLinkList = response.data.data.map( data => data.link_id)
-            const commentLinkString = commentLinkList.join(',')
-            console.log("commentLinkString", commentLinkString)
-            axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${commentLinkString}`)
+            // commentPost is the post that the comment is from
+            const commentPostLinkList = apiResponse.map(data => data.link_id)
+            const commentPostLinkString = commentPostLinkList.join(',')
+            console.log("commentLinkString", commentPostLinkString)
+            axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${commentPostLinkString}&size=${size}`)
                 .then((response) => {
-                    setCommentLink(response.data.data[0].full_link + data.id)
+                    // apiResponse contains comment data
+                    // posts contains parent post data
+                    const posts = response.data.data              
+                    const postInfoArray = apiResponse.map((data) => {
+                        const postInfo = posts.find( element => ("t3_" + element.id) === data.link_id )
+                        return (
+                            {
+                                postId: data.link_id,
+                                postLink: postInfo.full_link,
+                                postTitle: postInfo.title
+                            }
+                        )
+                    })
+                    console.log(postInfoArray)
+                    
+                    // use pairPostIdPostLinkArray to find correct post data to pass into each Comment component
+                    const newComments = apiResponse.map(
+                        data => <Comment 
+                                    key={data.id} 
+                                    data={data} 
+                                    postInfoArray={postInfoArray}
+                                />
+                        )
+                    setContentList(newComments)
+                    setIsLoading(false)
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-
         }
     }, [apiResponse])
-
-    // const prevCommentLinkList = usePrevious(commentLinkList)
-    useEffect(() => {
-        if (!searchSubmissions) {
-            const newComments = apiResponse.map((data, index) => <Comment key={data.id} data={data} commentLink={commentLinkList[index]} />)
-            setContentList(newComments)
-            setIsLoading(false)
-        }
-
-    }, [apiResponse, commentLinkList])
 
     return (
         <form onSubmit={apiQuery}>

@@ -1,42 +1,53 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 import './style/Comment.css'
 
-
-
 const Comment = (props) => {
-
-    const [commentLink, setCommentLink] = useState("")
-
     const data = props.data
 
-    let commentDate = new Date(data.created_utc * 1000)
-    commentDate = commentDate.getFullYear().toString() + '/' + commentDate.getMonth().toString() + '/' + commentDate.getDate().toString()
+    const postInfo = props.postInfoArray.find(element => element.postId === data.link_id)
+    const postLink = postInfo.postLink
 
-    // useEffect(() => {
-    //     axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${data.link_id}`)
-    //         .then((response) => {
-    //             setCommentLink(response.data.data[0].full_link + data.id)
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    // }, [data.link_id, data.id])
+    let commentDate = new Date(data.created_utc * 1000)
+    commentDate = commentDate.getFullYear().toString() + '/' + (commentDate.getMonth() + 1).toString() + '/' + commentDate.getDate().toString()
+
+    let title = postInfo.postTitle.replace(/&amp;/g, '&')
+    if (title.length > 50) {
+        title = title.substring(0, 47).concat('...')
+    }
+
+    let body = data.body
+    if (body.length > 300) {
+        body = body.substring(0, 297).concat('...')
+    }
+    // find postLink
+
 
     return (
         <div className="Comment">
-            <p>
-                <span className="Author">
-                    by <a href={`https://www.reddit.com/u/${data.author}`}>{data.author}</a>
-                </span>
-                <span> </span>
-                <span className="Subreddit">
-                    to <a href={`https://www.reddit.com/r/${data.subreddit}`}>r/{data.subreddit}</a>
+            {/* <p className="Title">{title}</p> */}
+            <div className="AuthorAndSubreddit">
+                <p>
+                    <span className="Author">
+                        by <a href={`https://www.reddit.com/u/${data.author}`}>{data.author}</a>
+                    </span>
+                    <span> </span>
+
+                    <span className="Subreddit">
+                        at <a href={`https://www.reddit.com/r/${data.subreddit}`}>r/{data.subreddit}</a>
+                    </span>
+                </p>
+            </div>
+            <p className="Body">{body}</p>
+            <p className="BottomLine">
+                <span className="Date">Posted on {commentDate.toString()}</span>
+                <span className="Link">
+                    <a href={postLink + data.id}>
+                        link
+                    </a>
                 </span>
             </p>
-            <p>{data.body}</p>
-            <p className="Date">Posted on {commentDate.toString()}</p>
-            <a href={props.commentLink + data.id}>link</a>
+
+
         </div>
     )
 }

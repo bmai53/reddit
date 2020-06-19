@@ -13,12 +13,11 @@ const Post = (props) => {
     }
 
     if (title.length > 50) {
-        title = title.substring(0, 47)
-        title = title.concat("...")
+        title = title.substring(0, 47).concat('...')
     }
 
     let postDate = new Date(data.created_utc * 1000)
-    postDate = postDate.getFullYear().toString() + '/' + postDate.getMonth().toString() + '/' + postDate.getDate().toString()
+    postDate = postDate.getFullYear().toString() + '/' + (postDate.getMonth() + 1).toString() + '/' + postDate.getDate().toString()
 
     return (
         <div className="Post">
@@ -46,7 +45,7 @@ const Post = (props) => {
                 <span>Comments: {data.num_comments} </span>
                 <span>Score: {data.score}</span>
             </p>
-            <a href={data.full_link}>link</a>
+            <a className="Link" href={data.full_link}>link</a>
         </div>
     )
 }

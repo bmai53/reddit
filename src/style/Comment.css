@@ -1,0 +1,33 @@
+.Comment{
+    background-color: grey;
+    margin: 10px 10px 10px 10px;
+    font-size: calc(10px + 1vmin);
+    width: 50vw;
+    padding: 0vmin 1vmin 0vmin 1vmin;
+    min-height: 20vh;
+    max-height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    /* justify-content: space-between; */
+}
+
+.Title{
+    margin-bottom: 0;
+}
+
+.AuthorAndSubreddit{
+    font-size: calc(5px + 1vmin);
+}
+
+.AuthorAndSubreddit p{
+    margin: 0;
+}
+
+.BottomLine .Date{
+    float: left;
+}
+
+.BottomLine .Link{
+    float: right;
+}
