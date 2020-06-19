@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Search reddit using [pushshift](https://pushshift.io/) API.
 
-https://bmai53.github.io/reddit-search/
+view at: https://bmai53.github.io/reddit-search/
 
-(work in progress)
+##### To Do:
+- clean up code
+- format css to mimic Reddit
