@@ -4,6 +4,8 @@ import loading from './images/loading.svg'
 import Post from './Post'
 import Comment from './Comment'
 
+import repoLink from './images/github-corner.png'
+
 const Form = () => {
 
     const [searchSubmissions, setSearchSubmissions] = useState(true)
@@ -138,6 +140,10 @@ const Form = () => {
 
     return (
         <form onSubmit={apiQuery}>
+            <a href="https://github.com/bmai53/reddit-search">
+                <img className="repoLink" src={repoLink} />
+            </a>
+
             <label>Search Type </label>
             <label>
                 <input type="radio" name="searchType" onChange={handleChange} value="submissions" checked={searchSubmissions} />

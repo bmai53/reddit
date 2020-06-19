@@ -4,6 +4,6 @@ Search reddit using [pushshift](https://pushshift.io/) API.
 
 view at: https://bmai53.github.io/reddit-search/
 
-##### To Do:
+#### To Do:
 - clean up code
 - format css to mimic Reddit
