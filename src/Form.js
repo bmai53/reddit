@@ -139,66 +139,67 @@ const Form = () => {
     }, [apiResponse])
 
     return (
-        <form onSubmit={apiQuery}>
+        <div>
             <a href="https://github.com/bmai53/reddit-search">
-                <img className="repoLink" src={repoLink} />
+                <img className="repoLink" alt="github logo" src={repoLink} />
             </a>
-
-            <label>Search Type </label>
-            <label>
-                <input type="radio" name="searchType" onChange={handleChange} value="submissions" checked={searchSubmissions} />
+            <form onSubmit={apiQuery}>
+                <label>Search Type </label>
+                <label>
+                    <input type="radio" name="searchType" onChange={handleChange} value="submissions" checked={searchSubmissions} />
                 Posts
             </label>
-            <label>
-                <input type="radio" name="searchType" onChange={handleChange} value="comments" checked={!searchSubmissions} />
+                <label>
+                    <input type="radio" name="searchType" onChange={handleChange} value="comments" checked={!searchSubmissions} />
                 Comments
             </label>
-            <br />
-            <label>Author </label>
-            <input type="text" name="author" onChange={handleChange} value={author} />
-            <br />
-            <label>Subreddit </label>
-            <input type="text" name="subreddit" onChange={handleChange} value={subreddit} />
-            <br />
-            <label>Search Term </label>
-            <input type="text" name="searchTerm" onChange={handleChange} value={searchTerm} />
-            <br />
-            <label>Title </label>
-            <input type="text" name="title" onChange={handleChange} value={title} />
-            <br />
-            <label>Return Size </label>
-            <input type="number" name="size" onChange={handleChange} value={size} />
-            <br />
-            <label>After </label>
-            <input type="date" name="after" onChange={handleChange} value={after} />
-            <br />
-            <label>Before </label>
-            <input type="date" name="before" onChange={handleChange} value={before} />
-            <br />
-            <label>Sort </label>
-            <label>
-                <input type="radio" name="sort" onChange={handleChange} value="desc" checked={sortDesc} />
+                <br />
+                <label>Author </label>
+                <input type="text" name="author" onChange={handleChange} value={author} />
+                <br />
+                <label>Subreddit </label>
+                <input type="text" name="subreddit" onChange={handleChange} value={subreddit} />
+                <br />
+                <label>Search Term </label>
+                <input type="text" name="searchTerm" onChange={handleChange} value={searchTerm} />
+                <br />
+                <label>Title </label>
+                <input type="text" name="title" onChange={handleChange} value={title} />
+                <br />
+                <label>Return Size </label>
+                <input type="number" name="size" onChange={handleChange} value={size} />
+                <br />
+                <label>After </label>
+                <input type="date" name="after" onChange={handleChange} value={after} />
+                <br />
+                <label>Before </label>
+                <input type="date" name="before" onChange={handleChange} value={before} />
+                <br />
+                <label>Sort </label>
+                <label>
+                    <input type="radio" name="sort" onChange={handleChange} value="desc" checked={sortDesc} />
                 Descending
             </label>
-            <label>
-                <input type="radio" name="sort" onChange={handleChange} value="asc" checked={sortAsc} />
+                <label>
+                    <input type="radio" name="sort" onChange={handleChange} value="asc" checked={sortAsc} />
                 Ascending
             </label>
-            <br />
-            <label>Sort Type </label>
-            <select name="sortType" onChange={handleChange} value={sortType}>
-                <option value="score">Score</option>
-                <option value="num_comments">Number of Comments</option>
-                <option value="created_utc">Created Date</option>
-            </select>
+                <br />
+                <label>Sort Type </label>
+                <select name="sortType" onChange={handleChange} value={sortType}>
+                    <option value="score">Score</option>
+                    <option value="num_comments">Number of Comments</option>
+                    <option value="created_utc">Created Date</option>
+                </select>
 
-            <br />
-            <button>Search</button>
-            <br />
+                <br />
+                <button>Search</button>
+                <br />
+            </form>
             <div>
                 {isLoading ? <img src={loading} alt="loading"></img> : contentList}
             </div>
-        </form>
+        </div>
     )
 }
 
