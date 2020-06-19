@@ -26,7 +26,7 @@ const Form = () => {
     const [apiResponse, setAPIResponse] = useState([])
 
     const [contentList, setContentList] = useState([])
-    const [commentLinkList, setCommentLinkList] = useState([])
+    // const [commentLinkList, setCommentLinkList] = useState([])
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -100,17 +100,32 @@ const Form = () => {
             setContentList(newSubmissions)
             setIsLoading(false)
         }
+        else {
+            const data = response.data.data
+            const commentLinkList = response.data.data.map( data => data.link_id)
+            const commentLinkString = commentLinkList.join(',')
+            console.log("commentLinkString", commentLinkString)
+            axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${commentLinkString}`)
+                .then((response) => {
+                    setCommentLink(response.data.data[0].full_link + data.id)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
+        }
     }, [apiResponse])
 
+    // const prevCommentLinkList = usePrevious(commentLinkList)
     useEffect(() => {
         if (!searchSubmissions) {
             const newComments = apiResponse.map((data, index) => <Comment key={data.id} data={data} commentLink={commentLinkList[index]} />)
             setContentList(newComments)
             setIsLoading(false)
         }
-    }, [commentLinkList])
 
-    console.log(contentList.length)
+    }, [apiResponse, commentLinkList])
+
     return (
         <form onSubmit={apiQuery}>
             <label>Search Type </label>
