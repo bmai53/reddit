@@ -104,7 +104,7 @@ const Form = () => {
             const commentPostLinkList = apiResponse.map(data => data.link_id)
             const commentPostLinkString = commentPostLinkList.join(',')
             console.log("commentLinkString", commentPostLinkString)
-            axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${commentPostLinkString}&size=${size}`)
+            axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${commentPostLinkString}`)
                 .then((response) => {
                     // apiResponse contains comment data
                     // posts contains parent post data
