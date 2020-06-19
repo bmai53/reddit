@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import loading from './loading.svg'
+import loading from './images/loading.svg'
 import Post from './Post'
 import Comment from './Comment'
 
@@ -87,20 +87,6 @@ const Form = () => {
             .catch((error) => {
                 console.log(error)
             })
-
-        // getting comment links
-        if (!searchSubmissions) {
-            const linkIdList = apiResponse.map(data => data.link_id)
-            const linkIdString = linkIdList.join(',')
-            axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${linkIdString}&size=${size}`)
-                .then((response) => {
-                    const newCommentLinkList = response.data.data.map(data => data.full_link)
-                    setCommentLinkList(newCommentLinkList)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
     }
 
     // set component array
@@ -122,7 +108,7 @@ const Form = () => {
         }
     }, [commentLinkList])
 
-
+    console.log(contentList.length)
     return (
         <form onSubmit={apiQuery}>
             <label>Search Type </label>

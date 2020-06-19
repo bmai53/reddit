@@ -1,6 +1,6 @@
 import React from 'react'
-import './Post.css'
-import no_preview from './no_preview.png'
+import './style/Post.css'
+import no_preview from './images/no_preview.png'
 
 const Post = (props) => {
 
