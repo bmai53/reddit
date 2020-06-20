@@ -8,5 +8,6 @@ This app allows the user to Search for Reddit posts and comments using [pushshif
 - Title of Post
 
 #### To Do:
-- clean up code
-- format css to mimic Reddit
+- add dark mode
+- add header/footer
+- add additional filtering + rework form layout
