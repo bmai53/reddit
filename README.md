@@ -1,8 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Visit the app [here]!(https://bmai53.github.io/reddit-search/)
 
-Search reddit using [pushshift](https://pushshift.io/) API.
+This app allows the user to Search for Reddit posts and comments using [pushshift](https://pushshift.io/) API. 
 
-view at: https://bmai53.github.io/reddit-search/
+#### Users can search by:
+- Author
+- Subreddit
+- Title of Post
 
 #### To Do:
 - clean up code
