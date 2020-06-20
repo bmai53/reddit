@@ -1,11 +1,11 @@
 
 .App {
   text-align: center;
-  background-color: #EFF7FF;
+  background-color: #EFEFED;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  color: white;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* color: white; */
 }
 
 .repoLink{
@@ -21,13 +21,35 @@
 }
 
 a{
-  color: lightskyblue
+  /* color: lightskyblue; */
+  text-decoration: none;
 }
 
 a:visited{
-  color: #ccccff;
+  /* color: #ccccff; */
 }
 
 a:hover{
-  color: yellow;
+  /* color: yellow; */
+  text-decoration: underline;
 }
+
+.Link{
+
+    text-decoration: none;
+    width: 75px;
+    height: 25px;
+    padding: 2px;
+    background: #0077D6;
+    color: white;
+    border-radius: 5px;
+    border: solid 1px white;
+}
+
+.Link:hover{
+    text-decoration: none;
+    border-color: #0077D6;
+    background:white;
+    color: #0077D6;
+}
+

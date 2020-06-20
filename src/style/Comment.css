@@ -1,11 +1,14 @@
 .Comment{
-    background-color: grey;
+    background-color: white;
     margin: 10px 10px 10px 10px;
     font-size: calc(10px + 1vmin);
-    width: 50vw;
-    padding: 0vmin 1vmin 0vmin 1vmin;
+    /* width: 50vw;
     min-height: 20vh;
-    max-height: 25vh;
+    max-height: 25vh; */
+    width: 750px;
+    max-height: 200px;
+    padding: 0vmin 1vmin 0vmin 1vmin;
+    margin: 25px auto 25px auto;
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -21,13 +24,26 @@
 }
 
 .AuthorAndSubreddit p{
-    margin: 0;
+    /* margin: 0; */
 }
+
+.Body{
+    display: block;
+    text-align: justify;
+    margin: auto;
+    font-size: calc(10px + 1vmin);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    line-height: 20px;
+    max-height: 80px
+}
+
 
 .BottomLine .Date{
     float: left;
 }
 
-.BottomLine .Link{
+.BottomLine .SpanLink{
     float: right;
 }

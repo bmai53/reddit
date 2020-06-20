@@ -12,9 +12,9 @@ const Post = (props) => {
         previewImg = previewImg.images[0].source.url.replace(/&amp;/g, '&')
     }
 
-    if (title.length > 50) {
-        title = title.substring(0, 47).concat('...')
-    }
+    // if (title.length > 50) {
+    //     title = title.substring(0, 47).concat('...')
+    // }
 
     let postDate = new Date(data.created_utc * 1000)
     postDate = postDate.getFullYear().toString() + '/' + (postDate.getMonth() + 1).toString() + '/' + postDate.getDate().toString()
@@ -28,10 +28,12 @@ const Post = (props) => {
                         <img src={no_preview} alt="preview" width="150" height="150" />
                 }
             </div>
-            <a href={data.url} target="_blank" rel="noopener noreferrer">{title}</a>
+            <div className="PostTitle">
+                <a href={data.url} target="_blank" rel="noopener noreferrer">{title}</a>
+            </div>
             {/* <p className="Author">{data.author}</p>
             <p className="Subreddit">r/{data.subreddit}</p> */}
-            <p>
+            <p className="Identifiers">
                 <span className="Author">
                     by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer">{data.author}</a>
                 </span>
@@ -39,13 +41,17 @@ const Post = (props) => {
                 <span className="Subreddit">
                     to <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer">r/{data.subreddit}</a>
                 </span>
+                <span> </span>
+                <span className="Date">
+                    on {postDate.toString()}
+                </span>
             </p>
-            <p className="Date">Posted on {postDate.toString()}</p>
+            
             <p className="Stats">
                 <span>Comments: {data.num_comments} </span>
                 <span>Score: {data.score}</span>
             </p>
-            <a className="Link" href={data.full_link} target="_blank" rel="noopener noreferrer">
+            <a className="Link" href={data.full_link} target="_blank" rel="noopener noreferrer" className="Link">
                 link
             </a>
         </div>

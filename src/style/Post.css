@@ -1,19 +1,37 @@
 .Post{
-    background-color: grey;
+    background-color: white;
     margin: 10px 10px 10px 10px;
     padding: 25px;
     font-size: calc(10px + 1vmin);
-    width: 50vw;
-    min-height: 10vh;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;  */
+    /* width: 50vw; */
+    /* min-height: 10vh; */
+    width: 750px;
+    height: 150px;
+    margin: 25px auto 25px auto;
 }
 
 .PreviewImage{
     float: left;
+    margin-right: 10px;
 }
 
+.PostTitle{
+    font-size: calc(10px + 2vmin);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Identifiers{
+    font-size: calc(5px + 1vmin);
+    margin-top: 25px;
+}
+
+.Stats{
+   font-size: calc(5px + 1vmin);
+    
+}
 .Link{
     float: right;
 }
+

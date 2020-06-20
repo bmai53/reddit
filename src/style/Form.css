@@ -5,6 +5,7 @@
     /* min-width: 40vw; */
     width: 750px;
     text-align: center;
+    margin: auto;
 }
 
 .TabBar{
@@ -16,6 +17,7 @@
     font-size: 10px;
 }
 
+
 .SearchButton{
     font-size: 20px;
     margin: 50px;
@@ -24,8 +26,18 @@
     background: #0077D6;
     color: white;
     border-radius: 5px;
-    border: white;
+    border: solid 1px white;
 }
+
+.SearchButton:hover{
+    border-color: #0077D6;
+    background:white;
+    color: #0077D6;
+}
+
+
+
+
 
 
 @media only screen 

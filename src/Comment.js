@@ -15,12 +15,10 @@ const Comment = (props) => {
         title = title.substring(0, 47).concat('...')
     }
 
-    let body = data.body
-    if (body.length > 300) {
-        body = body.substring(0, 297).concat('...')
-    }
-    // find postLink
-
+    // let body = data.body
+    // if (body.length > 200) {
+    //     body = body.substring(0, 197).concat('...')
+    // }
 
     return (
         <div className="Comment">
@@ -37,15 +35,18 @@ const Comment = (props) => {
                     </span>
                 </p>
             </div>
-            <p className="Body">{body}</p>
+            <div className="Body">
+                <p>{data.body}</p>
+            </div>
             <p className="BottomLine">
                 <span className="Date">Posted on {commentDate.toString()}</span>
-                <span className="Link">
-                    <a href={postLink + data.id} target="_blank" rel="noopener noreferrer"> 
+                <span className="SpanLink">
+                    <a href={postLink + data.id} target="_blank" rel="noopener noreferrer" className="Link">
                         link
                     </a>
                 </span>
             </p>
+
 
 
         </div>
