@@ -1,0 +1,40 @@
+.Form{
+    color: black;
+    background-color: white;
+    font-family: Roboto;
+    /* min-width: 40vw; */
+    width: 750px;
+    text-align: center;
+}
+
+.TabBar{
+    background-color: #CEE3F8;
+}
+
+
+.sortOrderLabel{
+    font-size: 10px;
+}
+
+.SearchButton{
+    font-size: 20px;
+    margin: 50px;
+    width: 600px;
+    height: 50px;
+    background: #0077D6;
+    color: white;
+    border-radius: 5px;
+    border: white;
+}
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2){
+
+    .SearchButton{
+        width: 100vw
+    }
+}
+

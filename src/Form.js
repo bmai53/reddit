@@ -4,22 +4,26 @@ import loading from './images/loading.svg'
 import Post from './Post'
 import Comment from './Comment'
 
+import './style/Form.css'
+
 import repoLink from './images/github-corner.png'
+
+import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem } from '@material-ui/core'
 
 const Form = () => {
 
     const [searchSubmissions, setSearchSubmissions] = useState(true)
+    const [searchOption, setSearchOption] = useState(0)
 
     const [author, setAuthor] = useState("")
     const [title, setTitle] = useState("")
     const [subreddit, setSubreddit] = useState("")
     const [searchTerm, setSearchTerm] = useState("")
     const [size, setSize] = useState(50)
-    const [after, setAfter] = useState()
-    const [before, setBefore] = useState()
+    const [after, setAfter] = useState("")
+    const [before, setBefore] = useState("")
 
-    const [sortAsc, setSortAsc] = useState(false)
-    const [sortDesc, setSortDesc] = useState(true)
+    const [sort, setSort] = useState("desc")
     const [sortType, setSortType] = useState("score")
 
     const [isLoading, setIsLoading] = useState(false)
@@ -27,8 +31,15 @@ const Form = () => {
 
     const [contentList, setContentList] = useState([])
 
-    const handleChange = (event) => {
+    const handleChange = (event, newValue) => {
         const { name, value } = event.target
+
+        // material ui tabs
+        if (!name) {
+            if (newValue === 1) { setSearchSubmissions(false) }
+            else { setSearchSubmissions(true) }
+            setSearchOption(newValue)
+        }
 
         if (name === "author") { setAuthor(value) }
         if (name === "title") { setTitle(value) }
@@ -38,24 +49,7 @@ const Form = () => {
         if (name === "after") { setAfter(value) }
         if (name === "before") { setBefore(value) }
         if (name === "sortType") { setSortType(value) }
-        if (name === "sort") {
-            if (value === "desc") {
-                setSortDesc(true)
-                setSortAsc(false)
-            } else {
-                setSortDesc(false)
-                setSortAsc(true)
-            }
-        }
-
-        if (name === "searchType") {
-            if (value === "submissions") {
-                setSearchSubmissions(true)
-            } else {
-                setSearchSubmissions(false)
-            }
-        }
-
+        if (name === "sort") { setSort(value) }
     }
 
     const apiQuery = (event) => {
@@ -66,8 +60,6 @@ const Form = () => {
             "https://api.pushshift.io/reddit/search/submission" :
             "https://api.pushshift.io/reddit/search/comment"
 
-        const sortAscOrDesc = sortDesc ? "desc" : "asc"
-
         axios.get(apiEndPoint, {
             params: {
                 author: author,
@@ -77,7 +69,7 @@ const Form = () => {
                 size: size,
                 after: after,
                 before: before,
-                sort: sortAscOrDesc,
+                sort: sort,
                 sort_type: sortType
             }
         })
@@ -108,9 +100,9 @@ const Form = () => {
                 .then((response) => {
                     // apiResponse contains comment data
                     // posts contains parent post data
-                    const posts = response.data.data              
+                    const posts = response.data.data
                     const postInfoArray = apiResponse.map((data) => {
-                        const postInfo = posts.find( element => ("t3_" + element.id) === data.link_id )
+                        const postInfo = posts.find(element => ("t3_" + element.id) === data.link_id)
                         return (
                             {
                                 postId: data.link_id,
@@ -120,15 +112,15 @@ const Form = () => {
                         )
                     })
                     console.log(postInfoArray)
-                    
+
                     // use pairPostIdPostLinkArray to find correct post data to pass into each Comment component
                     const newComments = apiResponse.map(
-                        data => <Comment 
-                                    key={data.id} 
-                                    data={data} 
-                                    postInfoArray={postInfoArray}
-                                />
-                        )
+                        data => <Comment
+                            key={data.id}
+                            data={data}
+                            postInfoArray={postInfoArray}
+                        />
+                    )
                     setContentList(newComments)
                     setIsLoading(false)
                 })
@@ -138,63 +130,99 @@ const Form = () => {
         }
     }, [apiResponse])
 
+    // for material ui tabs
+    const styles = {
+        tabIndicator: {
+            style: {
+                background: "#FF5700",
+            }
+        }
+    };
+
     return (
         <div>
             <a href="https://github.com/bmai53/reddit-search">
                 <img className="repoLink" alt="github logo" src={repoLink} />
             </a>
-            <form onSubmit={apiQuery}>
-                <label>Search Type </label>
-                <label>
-                    <input type="radio" name="searchType" onChange={handleChange} value="submissions" checked={searchSubmissions} />
-                Posts
-            </label>
-                <label>
-                    <input type="radio" name="searchType" onChange={handleChange} value="comments" checked={!searchSubmissions} />
-                Comments
-            </label>
-                <br />
-                <label>Author </label>
-                <input type="text" name="author" onChange={handleChange} value={author} />
-                <br />
-                <label>Subreddit </label>
-                <input type="text" name="subreddit" onChange={handleChange} value={subreddit} />
-                <br />
-                <label>Search Term </label>
-                <input type="text" name="searchTerm" onChange={handleChange} value={searchTerm} />
-                <br />
-                <label>Title </label>
-                <input type="text" name="title" onChange={handleChange} value={title} />
-                <br />
-                <label>Return Size </label>
-                <input type="number" name="size" onChange={handleChange} value={size} />
-                <br />
-                <label>After </label>
-                <input type="date" name="after" onChange={handleChange} value={after} />
-                <br />
-                <label>Before </label>
-                <input type="date" name="before" onChange={handleChange} value={before} />
-                <br />
-                <label>Sort </label>
-                <label>
-                    <input type="radio" name="sort" onChange={handleChange} value="desc" checked={sortDesc} />
-                Descending
-            </label>
-                <label>
-                    <input type="radio" name="sort" onChange={handleChange} value="asc" checked={sortAsc} />
-                Ascending
-            </label>
-                <br />
-                <label>Sort Type </label>
-                <select name="sortType" onChange={handleChange} value={sortType}>
-                    <option value="score">Score</option>
-                    <option value="num_comments">Number of Comments</option>
-                    <option value="created_utc">Created Date</option>
-                </select>
+            <form onSubmit={apiQuery} className="Form">
+                <div className="TabBar">
+                    <Tabs value={searchOption} onChange={handleChange} TabIndicatorProps={styles.tabIndicator} centered >
+                        <Tab label="Posts" />
+                        <Tab label="Comments" />
+                    </Tabs>
+                </div>
 
-                <br />
-                <button>Search</button>
-                <br />
+                <div className="Inputs">
+                    <Grid container spacing={1} justify="center">
+
+                        <Grid item xs={4}>
+                            <TextField label="Author" className="InputAuthor" type="text" name="author" onChange={handleChange} value={author} />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <TextField label="Subreddit" className="InputSubreddit" type="text" name="subreddit" onChange={handleChange} value={subreddit} />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <TextField label="Title" className="InputTitle" type="text" name="title" onChange={handleChange} value={title} />
+                        </Grid>
+
+                        <Grid item xs={8}>
+                            <TextField label="Search Term" style={{ width: 450 }} className="InputSearchTerm" type="text" name="searchTerm" onChange={handleChange} value={searchTerm} />
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <TextField label="Return Size" className="InputReturnSize" type="number" name="size" onChange={handleChange} value={size} />
+                        </Grid>
+                       
+                        <Grid item xs={12} spacing={3} container direction="row" justify="space-evenly" alignItems="center">
+                            
+                            <Grid item>
+                                <FormControl style={{ minWidth: 200 }}>
+                                    <InputLabel>
+                                        Sort Type
+                                </InputLabel>
+                                    <Select autoWidth label="Sort Type" name="sortType" onChange={handleChange} value={sortType}>
+                                        <MenuItem value="score">Score</MenuItem>
+                                        <MenuItem value="num_comments">Num. of Comments</MenuItem>
+                                        <MenuItem value="created_utc">Created Date</MenuItem>
+                                    </Select>
+                                </FormControl>
+
+                            </Grid>
+
+                            <Grid item>
+                                <FormControl style={{ minWidth: 200 }}>
+                                    <InputLabel>
+                                        Sort Order
+                                </InputLabel>
+                                    <Select label="Sort Order" name="sort" onChange={handleChange} value={sort}>
+                                        <MenuItem value="desc">Descending</MenuItem>
+                                        <MenuItem value="asc">Ascending</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            
+                            <Grid item xs={6}>
+                                <label>After </label>
+                                <input label="After" type="date" name="after" onChange={handleChange} value={after} />
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <label>Before </label>
+                                <input label="Before" type="date" name="before" onChange={handleChange} value={"before"} />
+                            </Grid>
+
+
+                        </Grid>
+
+                    </Grid>
+                </div>
+
+                <Grid container justify="center">
+                    <button className="SearchButton">Search</button>
+                </Grid>
+
             </form>
             <div>
                 {isLoading ? <img src={loading} alt="loading"></img> : contentList}
