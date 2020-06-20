@@ -28,12 +28,12 @@ const Comment = (props) => {
             <div className="AuthorAndSubreddit">
                 <p>
                     <span className="Author">
-                        by <a href={`https://www.reddit.com/u/${data.author}`}>{data.author}</a>
+                        by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer" >{data.author}</a>
                     </span>
                     <span> </span>
 
                     <span className="Subreddit">
-                        at <a href={`https://www.reddit.com/r/${data.subreddit}`}>r/{data.subreddit}</a>
+                        at <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer" >r/{data.subreddit}</a>
                     </span>
                 </p>
             </div>
@@ -41,7 +41,7 @@ const Comment = (props) => {
             <p className="BottomLine">
                 <span className="Date">Posted on {commentDate.toString()}</span>
                 <span className="Link">
-                    <a href={postLink + data.id}>
+                    <a href={postLink + data.id} target="_blank" rel="noopener noreferrer"> 
                         link
                     </a>
                 </span>

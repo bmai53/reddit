@@ -28,16 +28,16 @@ const Post = (props) => {
                         <img src={no_preview} alt="preview" width="150" height="150" />
                 }
             </div>
-            <a href={data.url}>{title}</a>
+            <a href={data.url} target="_blank" rel="noopener noreferrer">{title}</a>
             {/* <p className="Author">{data.author}</p>
             <p className="Subreddit">r/{data.subreddit}</p> */}
             <p>
                 <span className="Author">
-                    by <a href={`https://www.reddit.com/u/${data.author}`}>{data.author}</a>
+                    by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer">{data.author}</a>
                 </span>
                 <span> </span>
                 <span className="Subreddit">
-                    to <a href={`https://www.reddit.com/r/${data.subreddit}`}>r/{data.subreddit}</a>
+                    to <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer">r/{data.subreddit}</a>
                 </span>
             </p>
             <p className="Date">Posted on {postDate.toString()}</p>
@@ -45,7 +45,9 @@ const Post = (props) => {
                 <span>Comments: {data.num_comments} </span>
                 <span>Score: {data.score}</span>
             </p>
-            <a className="Link" href={data.full_link}>link</a>
+            <a className="Link" href={data.full_link} target="_blank" rel="noopener noreferrer">
+                link
+            </a>
         </div>
     )
 }
