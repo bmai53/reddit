@@ -1,4 +1,4 @@
-Visit the app [here]!(https://bmai53.github.io/reddit-search/)
+Visit the app [here](https://bmai53.github.io/reddit-search/)!
 
 This app allows the user to Search for Reddit posts and comments using [pushshift](https://pushshift.io/) API. 
 
