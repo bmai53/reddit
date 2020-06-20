@@ -210,7 +210,7 @@ const Form = () => {
 
                             <Grid item xs={6}>
                                 <label>Before </label>
-                                <input label="Before" type="date" name="before" onChange={handleChange} value={"before"} />
+                                <input label="Before" type="date" name="before" onChange={handleChange} value={before} />
                             </Grid>
 
 
