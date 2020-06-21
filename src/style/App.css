@@ -3,8 +3,9 @@
   text-align: center;
   background-color: #EFEFED;
   min-height: 100vh;
-  /* display: flex; */
-  /* justify-content: center; */
+  display: flex;
+  justify-content: center;
+
   /* color: white; */
 }
 
