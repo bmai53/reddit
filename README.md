@@ -12,3 +12,7 @@ This app allows the user to search for Reddit posts and comments using [pushshif
 - add header/footer
 - add additional filtering + rework form layout
 - look into alternative date picker, material ui native date picker is buggy
+
+#### Done:
+- mimic Reddit colours
+- add mobile responsiveness
