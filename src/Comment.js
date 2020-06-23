@@ -1,6 +1,8 @@
 import React from 'react'
 import './style/Comment.css'
 
+import { Grid } from '@material-ui/core'
+
 const Comment = (props) => {
     const data = props.data
 
@@ -15,41 +17,44 @@ const Comment = (props) => {
         title = title.substring(0, 47).concat('...')
     }
 
-    // let body = data.body
-    // if (body.length > 200) {
-    //     body = body.substring(0, 197).concat('...')
-    // }
+    const commentDimensions = {
+        xs: 11,
+        sm: 11,
+        md: 8,
+        lg: 8,
+        xl: 8,
+    };
 
     return (
-        <div className="Comment">
-            {/* <p className="Title">{title}</p> */}
-            <div className="AuthorAndSubreddit">
-                <p>
-                    <span className="Author">
-                        by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer" >{data.author}</a>
-                    </span>
-                    <span> </span>
+        <Grid item {...commentDimensions}>
+            <div className="Comment">
+                {/* <p className="Title">{title}</p> */}
+                <div className="AuthorAndSubreddit">
+                    <p>
+                        <span className="Author">
+                            by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer" >{data.author}</a>
+                        </span>
+                        <span> </span>
 
-                    <span className="Subreddit">
-                        at <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer" >r/{data.subreddit}</a>
+                        <span className="Subreddit">
+                            at <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer" >r/{data.subreddit}</a>
+                        </span>
+                    </p>
+                </div>
+                <div className="Body">
+                    <p>{data.body}</p>
+                </div>
+                <p className="BottomLine">
+                    <span className="Date">Posted on {commentDate.toString()}</span>
+                    <span className="SpanLink">
+                        <a href={postLink + data.id} target="_blank" rel="noopener noreferrer" className="Link">
+                            link
+                    </a>
                     </span>
                 </p>
+
             </div>
-            <div className="Body">
-                <p>{data.body}</p>
-            </div>
-            <p className="BottomLine">
-                <span className="Date">Posted on {commentDate.toString()}</span>
-                <span className="SpanLink">
-                    <a href={postLink + data.id} target="_blank" rel="noopener noreferrer" className="Link">
-                        link
-                    </a>
-                </span>
-            </p>
-
-
-
-        </div>
+        </Grid>
     )
 }
 

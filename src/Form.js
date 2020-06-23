@@ -127,7 +127,11 @@ const Form = () => {
                 .catch((error) => {
                     console.log(error)
                 })
+            
         }
+
+        // scroll on mobile to content when done loading
+        window.scrollTo(0, document.body.scrollHeight);
     }, [apiResponse])
 
     // for material ui tabs
@@ -139,94 +143,117 @@ const Form = () => {
         }
     };
 
+    const formDimensions = {
+        xs: 10,
+        sm: 10,
+        md: 6,
+        lg: 6,
+        xl: 6,
+    };
+
     return (
         <div>
             <a href="https://github.com/bmai53/reddit-search">
                 <img className="repoLink" alt="github logo" src={repoLink} />
             </a>
-            <form onSubmit={apiQuery} className="Form">
-                <div className="TabBar">
-                    <Tabs value={searchOption} onChange={handleChange} TabIndicatorProps={styles.tabIndicator} centered >
-                        <Tab label="Posts" />
-                        <Tab label="Comments" />
-                    </Tabs>
-                </div>
 
-                <div className="Inputs">
-                    <Grid container spacing={1} justify="center">
+            <Grid container direction="column" alignItems="center" spacing={1}>
+                <Grid item {...formDimensions}>
+                    <form onSubmit={apiQuery} className="Form">
+                        <div className="TabBar">
+                            <Tabs value={searchOption} onChange={handleChange} TabIndicatorProps={styles.tabIndicator} centered >
+                                <Tab label="Posts" />
+                                <Tab label="Comments" />
+                            </Tabs>
+                        </div>
 
-                        <Grid item xs={4}>
-                            <TextField label="Author" className="InputAuthor" type="text" name="author" onChange={handleChange} value={author} />
-                        </Grid>
+                        <div className="Inputs">
+                            <Grid container spacing={1} justify="center">
 
-                        <Grid item xs={4}>
-                            <TextField label="Subreddit" className="InputSubreddit" type="text" name="subreddit" onChange={handleChange} value={subreddit} />
-                        </Grid>
+                                <Grid item sm={4} xs={12}>
+                                    <TextField label="Author" fullWidth className="InputAuthor" type="text" name="author" onChange={handleChange} value={author} />
+                                </Grid>
 
-                        <Grid item xs={4}>
-                            <TextField label="Title" className="InputTitle" type="text" name="title" onChange={handleChange} value={title} />
-                        </Grid>
+                                <Grid item sm={4} xs={12}>
+                                    <TextField label="Subreddit" fullWidth className="InputSubreddit" type="text" name="subreddit" onChange={handleChange} value={subreddit} />
+                                </Grid>
 
-                        <Grid item xs={8}>
-                            <TextField label="Search Term" style={{ width: 450 }} className="InputSearchTerm" type="text" name="searchTerm" onChange={handleChange} value={searchTerm} />
-                        </Grid>
+                                <Grid item sm={4} xs={12}>
+                                    <TextField label="Title" fullWidth className="InputTitle" type="text" name="title" onChange={handleChange} value={title} />
+                                </Grid>
 
-                        <Grid item xs={4}>
-                            <TextField label="Return Size" className="InputReturnSize" type="number" name="size" onChange={handleChange} value={size} />
-                        </Grid>
-                       
-                        <Grid item xs={12} spacing={3} container direction="row" justify="space-evenly" alignItems="center">
-                            
-                            <Grid item>
-                                <FormControl style={{ minWidth: 200 }}>
-                                    <InputLabel>
-                                        Sort Type
+                                <Grid item sm={8} xs={12}>
+                                    <TextField label="Search Term" fullWidth className="InputSearchTerm" type="text" name="searchTerm" onChange={handleChange} value={searchTerm} />
+                                </Grid>
+
+                                <Grid item sm={4} xs={12}>
+                                    <TextField label="Return Size" fullWidth className="InputReturnSize" type="number" name="size" onChange={handleChange} value={size} />
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    <br />
+                                </Grid>
+
+                                <Grid item container spacing={5} direction="row" style={{ textAlign: "center" }}>
+
+                                    <Grid item sm={6} xs={12}>
+                                        <FormControl style={{ minWidth: 200 }}>
+                                            <InputLabel>
+                                                Sort Type
                                 </InputLabel>
-                                    <Select autoWidth label="Sort Type" name="sortType" onChange={handleChange} value={sortType}>
-                                        <MenuItem value="score">Score</MenuItem>
-                                        <MenuItem value="num_comments">Num. of Comments</MenuItem>
-                                        <MenuItem value="created_utc">Created Date</MenuItem>
-                                    </Select>
-                                </FormControl>
+                                            <Select autoWidth label="Sort Type" name="sortType" onChange={handleChange} value={sortType}>
+                                                <MenuItem value="score">Score</MenuItem>
+                                                <MenuItem value="num_comments">Num. of Comments</MenuItem>
+                                                <MenuItem value="created_utc">Created Date</MenuItem>
+                                            </Select>
+                                        </FormControl>
 
-                            </Grid>
+                                    </Grid>
 
-                            <Grid item>
-                                <FormControl style={{ minWidth: 200 }}>
-                                    <InputLabel>
-                                        Sort Order
+                                    <Grid item sm={6} xs={12}>
+                                        <FormControl style={{ minWidth: 200 }}>
+                                            <InputLabel>
+                                                Sort Order
                                 </InputLabel>
-                                    <Select label="Sort Order" name="sort" onChange={handleChange} value={sort}>
-                                        <MenuItem value="desc">Descending</MenuItem>
-                                        <MenuItem value="asc">Ascending</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                            
-                            <Grid item xs={6}>
-                                <label>After </label>
-                                <input label="After" type="date" name="after" onChange={handleChange} value={after} />
-                            </Grid>
+                                            <Select label="Sort Order" name="sort" onChange={handleChange} value={sort}>
+                                                <MenuItem value="desc">Descending</MenuItem>
+                                                <MenuItem value="asc">Ascending</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
 
-                            <Grid item xs={6}>
-                                <label>Before </label>
-                                <input label="Before" type="date" name="before" onChange={handleChange} value={before} />
+                                    <Grid item sm={6} xs={12}>
+                                        <label>After </label>
+                                        <input label="After" type="date" name="after" onChange={handleChange} value={after} />
+                                    </Grid>
+
+                                    <Grid item sm={6} xs={12}>
+                                        <label>Before </label>
+                                        <input label="Before" type="date" name="before" onChange={handleChange} value={before} />
+                                    </Grid>
+
+                                </Grid>
+
                             </Grid>
+                        </div>
 
-
+                        <Grid container justify="center">
+                            {
+                                isLoading ?
+                                    <button className="SearchButton">Searching ...</button> :
+                                    <button className="SearchButton">Search</button>
+                            }
                         </Grid>
 
-                    </Grid>
-                </div>
+                    </form>
 
-                <Grid container justify="center">
-                    <button className="SearchButton">Search</button>
                 </Grid>
 
-            </form>
-            <div>
-                {isLoading ? <img src={loading} alt="loading"></img> : contentList}
-            </div>
+                <Grid item container spacing={1} justify="center" alignItems="center">
+                    {isLoading ? <img src={loading} alt="loading"></img> : contentList}
+                </Grid>
+            </Grid>
+
         </div>
     )
 }

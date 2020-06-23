@@ -5,7 +5,7 @@
     font-size: calc(10px + 1vmin);
     /* width: 50vw; */
     /* min-height: 10vh; */
-    width: 750px;
+    /* width: 750px; */
     height: 150px;
     margin: 25px auto 25px auto;
 }
@@ -33,5 +33,6 @@
 }
 .Link{
     float: right;
+    text-align: center;
 }
 
