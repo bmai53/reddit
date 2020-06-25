@@ -75,7 +75,7 @@ const Form = () => {
         })
             .then((response) => {
                 setAPIResponse(response.data.data)
-                console.log(response.data.data)
+                // console.log(response.data.data)
             })
             .catch((error) => {
                 console.log(error)
@@ -95,7 +95,7 @@ const Form = () => {
             // commentPost is the post that the comment is from
             const commentPostLinkList = apiResponse.map(data => data.link_id)
             const commentPostLinkString = commentPostLinkList.join(',')
-            console.log("commentLinkString", commentPostLinkString)
+            // console.log("commentLinkString", commentPostLinkString)
             axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${commentPostLinkString}`)
                 .then((response) => {
                     // apiResponse contains comment data
@@ -111,7 +111,7 @@ const Form = () => {
                             }
                         )
                     })
-                    console.log(postInfoArray)
+                    // console.log(postInfoArray)
 
                     // use pairPostIdPostLinkArray to find correct post data to pass into each Comment component
                     const newComments = apiResponse.map(
