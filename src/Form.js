@@ -5,10 +5,11 @@ import Post from './Post'
 import Comment from './Comment'
 
 import './style/Form.css'
+import useStyles, { useStyle } from './style/styles'
 
 import repoLink from './images/github-corner.png'
 
-import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem } from '@material-ui/core'
+import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem, Button } from '@material-ui/core'
 
 const Form = () => {
 
@@ -127,14 +128,16 @@ const Form = () => {
                 .catch((error) => {
                     console.log(error)
                 })
-            
+
         }
 
         // scroll on mobile to content when done loading
         window.scrollTo(0, document.body.scrollHeight);
+
     }, [apiResponse])
 
-    // for material ui tabs
+    // for material ui styles
+    const classes = useStyles()
     const styles = {
         tabIndicator: {
             style: {
@@ -150,6 +153,8 @@ const Form = () => {
         lg: 6,
         xl: 6,
     };
+
+    
 
     return (
         <div>
@@ -223,27 +228,34 @@ const Form = () => {
                                     </Grid>
 
                                     <Grid item sm={6} xs={12}>
-                                        <label>After </label>
-                                        <input label="After" type="date" name="after" onChange={handleChange} value={after} />
+                                        {/* need InputLabelProps={{ shrink: true }}  to prevent overlap of label */}
+                                        <TextField label="After" variant="outlined" InputLabelProps={{ shrink: true }} type="date" name="after" onChange={handleChange} value={after} />
                                     </Grid>
 
                                     <Grid item sm={6} xs={12}>
-                                        <label>Before </label>
-                                        <input label="Before" type="date" name="before" onChange={handleChange} value={before} />
+                                        <TextField label="Before" variant="outlined" InputLabelProps={{ shrink: true }} type="date" name="before" onChange={handleChange} value={before} />
                                     </Grid>
 
+                                </Grid>
+
+                                <Grid item container>
+                                    {
+                                        isLoading ?
+                                            <Button variant="contained" type="submit" fullWidth className={classes.searchButton}>Searching ...</Button> :
+                                            <Button variant="contained" type="submit" fullWidth className={classes.searchButton}>Search</Button>
+                                    }
                                 </Grid>
 
                             </Grid>
                         </div>
 
-                        <Grid container justify="center">
+                        {/* <Grid container justify="center">
                             {
                                 isLoading ?
                                     <button className="SearchButton">Searching ...</button> :
                                     <button className="SearchButton">Search</button>
                             }
-                        </Grid>
+                        </Grid> */}
 
                     </form>
 
