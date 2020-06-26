@@ -5,7 +5,7 @@ import Post from './Post'
 import Comment from './Comment'
 
 import './style/Form.css'
-import useStyles, { useStyle } from './style/styles'
+import useStyles from './style/styles'
 
 import repoLink from './images/github-corner.png'
 
