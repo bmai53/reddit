@@ -27,7 +27,7 @@ const Form = () => {
     const [before, setBefore] = useState("")
     const [sort, setSort] = useState("desc")
     const [sortType, setSortType] = useState("score")
-    const [hideFilters, setHideFilters] = useState(true)
+    const [showFilters, setShowFilters] = useState(false)
 
     const [isLoading, setIsLoading] = useState(false)
     const [apiResponse, setAPIResponse] = useState([])
@@ -140,8 +140,8 @@ const Form = () => {
 
     // show or hide filters
     const changeFilter = () => {
-        const curState = hideFilters
-        setHideFilters(!curState)
+        const curState = showFilters
+        setShowFilters(!curState)
     }
 
     // for material ui styles
@@ -192,54 +192,46 @@ const Form = () => {
                                     <TextField label="Return Size" fullWidth className="InputReturnSize" type="number" name="size" onChange={handleChange} value={size} />
                                 </Grid>
 
-                                <Grid item xs={12}>
-                                    <Button onClick={changeFilter}>{hideFilters ? 'Show Filters' : 'Hide Filters'}</Button>
+                                <Grid item container xs={12} justify="center">
+                                    <div style={{margin: 25}}>
+                                        <Button onClick={changeFilter}>{showFilters ? 'Hide Filters' : 'Show Filters'}</Button>
+                                    </div>
                                 </Grid>
-                                
-                      
-                                    {
-                                        hideFilters ?
-                                            <br/>
-                                            :
-                                            (
-                                                <div>
-                                                <Grid item container spacing={5} direction="row" style={{ textAlign: "center" }}>
-                                                    <Grid item sm={6} xs={12}>
-                                                        <FormControl style={{ minWidth: 200 }}>
-                                                            <InputLabel>Sort Type</InputLabel>
-                                                            <Select autoWidth label="Sort Type" name="sortType" onChange={handleChange} value={sortType}>
-                                                                <MenuItem value="score">Score</MenuItem>
-                                                                <MenuItem value="num_comments">Num. of Comments</MenuItem>
-                                                                <MenuItem value="created_utc">Created Date</MenuItem>
-                                                            </Select>
-                                                        </FormControl>
 
-                                                    </Grid>
+                                <Collapse in={showFilters} >
+                                    <Grid item container spacing={5} direction="row" style={{ textAlign: "center" }}>
+                                        <Grid item sm={6} xs={12}>
+                                            <FormControl style={{ minWidth: 200 }}>
+                                                <InputLabel>Sort Type</InputLabel>
+                                                <Select autoWidth label="Sort Type" name="sortType" onChange={handleChange} value={sortType}>
+                                                    <MenuItem value="score">Score</MenuItem>
+                                                    <MenuItem value="num_comments">Num. of Comments</MenuItem>
+                                                    <MenuItem value="created_utc">Created Date</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
 
-                                                    <Grid item sm={6} xs={12}>
-                                                        <FormControl style={{ minWidth: 200 }}>
-                                                            <InputLabel>Sort Order</InputLabel>
-                                                            <Select label="Sort Order" name="sort" onChange={handleChange} value={sort}>
-                                                                <MenuItem value="desc">Descending</MenuItem>
-                                                                <MenuItem value="asc">Ascending</MenuItem>
-                                                            </Select>
-                                                        </FormControl>
-                                                    </Grid>
+                                        <Grid item sm={6} xs={12}>
+                                            <FormControl style={{ minWidth: 200 }}>
+                                                <InputLabel>Sort Order</InputLabel>
+                                                <Select label="Sort Order" name="sort" onChange={handleChange} value={sort}>
+                                                    <MenuItem value="desc">Descending</MenuItem>
+                                                    <MenuItem value="asc">Ascending</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
 
-                                                    <Grid item sm={6} xs={12}>
-                                                        {/* need InputLabelProps={{ shrink: true }}  to prevent overlap of label */}
-                                                        <TextField label="After" variant="outlined" InputLabelProps={{ shrink: true }} type="date" name="after" onChange={handleChange} value={after} />
-                                                    </Grid>
+                                        <Grid item sm={6} xs={12}>
+                                            {/* need InputLabelProps={{ shrink: true }}  to prevent overlap of label */}
+                                            <TextField label="After" variant="outlined" InputLabelProps={{ shrink: true }} type="date" name="after" onChange={handleChange} value={after} />
+                                        </Grid>
 
-                                                    <Grid item sm={6} xs={12}>
-                                                        <TextField label="Before" variant="outlined" InputLabelProps={{ shrink: true }} type="date" name="before" onChange={handleChange} value={before} />
-                                                    </Grid>
-                                                </Grid>
-                                                </div>
-                                            )
-                                    }
+                                        <Grid item sm={6} xs={12}>
+                                            <TextField label="Before" variant="outlined" InputLabelProps={{ shrink: true }} type="date" name="before" onChange={handleChange} value={before} />
+                                        </Grid>
+                                    </Grid>
+                                </Collapse>
 
-                               
                                 <Grid item container>
                                     {
                                         isLoading ?
