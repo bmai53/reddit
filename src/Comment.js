@@ -29,16 +29,17 @@ const Comment = (props) => {
         <Grid item {...commentDimensions}>
             <div className="Comment">
                 {/* <p className="Title">{title}</p> */}
-                <div className="AuthorAndSubreddit">
+                <div className="TopLine">
                     <p>
                         <span className="Author">
                             by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer" >{data.author}</a>
                         </span>
                         <span> </span>
-
                         <span className="Subreddit">
                             at <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer" >r/{data.subreddit}</a>
                         </span>
+
+                        <span className="CommentScore">Score: {data.score}</span>
                     </p>
                 </div>
                 <div className="Body">

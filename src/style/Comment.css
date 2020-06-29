@@ -19,12 +19,12 @@
     margin-bottom: 0;
 }
 
-.AuthorAndSubreddit{
+.TopLine{
     font-size: calc(5px + 1vmin);
 }
 
-.AuthorAndSubreddit p{
-    /* margin: 0; */
+.CommentScore{
+    float: right;
 }
 
 .Body{
