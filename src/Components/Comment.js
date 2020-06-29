@@ -1,5 +1,5 @@
 import React from 'react'
-import './style/Comment.css'
+import '../style/Comment.css'
 
 import { Grid } from '@material-ui/core'
 

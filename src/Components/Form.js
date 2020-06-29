@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import loading from './images/loading.svg'
+import loading from '../images/loading.svg'
 import Post from './Post'
 import Comment from './Comment'
 
-import './style/Form.css'
-import useStyles from './style/styles'
+import '../style/Form.css'
+import useStyles from '../style/styles'
 
-import repoLink from './images/github-corner.png'
+import repoLink from '../images/github-corner.png'
 
 import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem, Button, Collapse } from '@material-ui/core'
 
@@ -164,10 +164,12 @@ const Form = () => {
             <Grid container direction="column" alignItems="center" spacing={1}>
                 <Grid item {...formDimensions}>
                     <form onSubmit={apiQuery} className="Form">
-                        <Tabs value={searchOption} onChange={handleChange} className={classes.tabBar} TabIndicatorProps={{ style: { background: "#FF5700" } }} centered >
-                            <Tab label="Posts" />
-                            <Tab label="Comments" />
-                        </Tabs>
+                        <div className="TabBar">
+                            <Tabs value={searchOption} onChange={handleChange} TabIndicatorProps={{ style: { background: "#FF5700" } }} centered >
+                                <Tab label="Posts" />
+                                <Tab label="Comments" />
+                            </Tabs>
+                        </div>
 
                         <div className="Inputs">
                             <Grid container spacing={1} justify="center">
@@ -193,7 +195,7 @@ const Form = () => {
                                 </Grid>
 
                                 <Grid item container xs={12} justify="center">
-                                    <div style={{margin: 25}}>
+                                    <div style={{ margin: 25 }}>
                                         <Button onClick={changeFilter}>{showFilters ? 'Hide Filters' : 'Show Filters'}</Button>
                                     </div>
                                 </Grid>
@@ -233,11 +235,9 @@ const Form = () => {
                                 </Collapse>
 
                                 <Grid item container>
-                                    {
-                                        isLoading ?
-                                            <Button variant="contained" type="submit" fullWidth className={classes.searchButton}>Searching ...</Button> :
-                                            <Button variant="contained" type="submit" fullWidth className={classes.searchButton}>Search</Button>
-                                    }
+                                        <button type="submit" fullWidth className="SearchButton">
+                                            {isLoading ? 'Searching ...' : 'Search'}
+                                        </button>
                                 </Grid>
 
                             </Grid>

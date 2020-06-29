@@ -1,6 +1,6 @@
 import React from 'react'
-import './style/Post.css'
-import no_preview from './images/no_preview.png'
+import '../style/Post.css'
+import no_preview from '../images/no_preview.png'
 
 import { Grid } from '@material-ui/core'
 
