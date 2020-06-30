@@ -6,7 +6,7 @@
     /* width: 50vw; */
     /* min-height: 10vh; */
     /* width: 750px; */
-    height: 150px;
+    min-height: 150px;
 }
 
 .PreviewImage{
@@ -32,6 +32,8 @@
     
 }
 .Link{
+    position: relative;
+    bottom: 25px;
     float: right;
     font-size: calc(5px + 1vmin);
 }
