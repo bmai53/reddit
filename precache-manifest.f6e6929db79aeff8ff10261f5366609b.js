@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "847bbc3af4fcaac5b72e20889eb53a7e",
+    "revision": "4f0dedde17185b32590d8398d22c8212",
     "url": "/reddit-search/index.html"
   },
   {
-    "revision": "d29c128331fee2a70dc4",
-    "url": "/reddit-search/static/css/main.48c7d481.chunk.css"
+    "revision": "d52c719962d9bc438d93",
+    "url": "/reddit-search/static/css/main.bf0cccc8.chunk.css"
   },
   {
-    "revision": "477f0568467fc109271e",
-    "url": "/reddit-search/static/js/2.fec24b84.chunk.js"
+    "revision": "4f28f0489ca4b996331c",
+    "url": "/reddit-search/static/js/2.34f21e71.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/reddit-search/static/js/2.fec24b84.chunk.js.LICENSE.txt"
+    "url": "/reddit-search/static/js/2.34f21e71.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d29c128331fee2a70dc4",
-    "url": "/reddit-search/static/js/main.6cc0d99d.chunk.js"
+    "revision": "d52c719962d9bc438d93",
+    "url": "/reddit-search/static/js/main.1750db8b.chunk.js"
   },
   {
     "revision": "1b5af96df8ce7dc61c15",
