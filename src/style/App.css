@@ -35,21 +35,23 @@ a:hover{
 }
 
 .Link{
-
-    text-decoration: none;
-    width: 75px;
-    height: 25px;
-    padding: 2px;
-    background: #0077D6;
-    color: white;
-    border-radius: 5px;
-    border: solid 1px white;
+  text-align: center;
+  align-items: center;
+  text-decoration: none;
+  width: 75px;
+  height: 25px;
+  padding: 2px;
+  background: #0077D6;
+  color: white;
+  border-radius: 5px;
+  border: solid 1px white;
 }
 
 .Link:hover{
-    text-decoration: none;
-    border-color: #0077D6;
-    background:white;
-    color: #0077D6;
+  cursor: pointer;
+  text-decoration: none;
+  border-color: #0077D6;
+  background:white;
+  color: #0077D6;
 }
 

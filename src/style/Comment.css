@@ -1,14 +1,12 @@
 .Comment{
     background-color: white;
-    margin: 10px 10px 10px 10px;
     font-size: calc(10px + 1vmin);
     /* width: 50vw;
     min-height: 20vh;
     max-height: 25vh; */
     /* width: 750px; */
-    max-height: 200px;
-    padding: 0vmin 1vmin 0vmin 1vmin;
-    margin: 25px auto 25px auto;
+    /* max-height: 200px; */
+    /* padding: 0vmin 1vmin 0vmin 1vmin; */
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -39,6 +37,9 @@
     max-height: 80px
 }
 
+.BottomLine{
+    font-size: calc(5px + 1vmin);
+}
 
 .BottomLine .Date{
     float: left;

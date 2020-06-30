@@ -1,7 +1,7 @@
 import React from 'react'
 import '../style/Comment.css'
 
-import { Grid } from '@material-ui/core'
+import { Grid, Card, CardContent } from '@material-ui/core'
 
 const Comment = (props) => {
     const data = props.data
@@ -20,41 +20,45 @@ const Comment = (props) => {
     const commentDimensions = {
         xs: 11,
         sm: 11,
-        md: 8,
-        lg: 8,
-        xl: 8,
+        md: 7,
+        lg: 7,
+        xl: 7,
     };
 
     return (
         <Grid item {...commentDimensions}>
-            <div className="Comment">
-                {/* <p className="Title">{title}</p> */}
-                <div className="TopLine">
-                    <p>
-                        <span className="Author">
-                            by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer" >{data.author}</a>
-                        </span>
-                        <span> </span>
-                        <span className="Subreddit">
-                            at <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer" >r/{data.subreddit}</a>
-                        </span>
+            <Card>
+                <CardContent>
+                    <div className="Comment">
+                        {/* <p className="Title">{title}</p> */}
+                        <div className="TopLine">
+                            <p>
+                                <span className="Author">
+                                    by <a href={`https://www.reddit.com/u/${data.author}`} target="_blank" rel="noopener noreferrer" >{data.author}</a>
+                                </span>
+                                <span> </span>
+                                <span className="Subreddit">
+                                    at <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer" >r/{data.subreddit}</a>
+                                </span>
 
-                        <span className="CommentScore">Score: {data.score}</span>
-                    </p>
-                </div>
-                <div className="Body">
-                    <p>{data.body}</p>
-                </div>
-                <p className="BottomLine">
-                    <span className="Date">Posted on {commentDate.toString()}</span>
-                    <span className="SpanLink">
-                        <a href={postLink + data.id} target="_blank" rel="noopener noreferrer" className="Link">
-                            link
-                    </a>
-                    </span>
-                </p>
+                                <span className="CommentScore">Score: {data.score}</span>
+                            </p>
+                        </div>
+                        <div className="Body">
+                            <p>{data.body}</p>
+                        </div>
+                        <p className="BottomLine">
+                            <span className="Date">Posted on {commentDate.toString()}</span>
+                            <span className="SpanLink">
+                                <button href={postLink + data.id} target="_blank" rel="noopener noreferrer" className="Link">
+                                    link
+                                </button>
+                            </span>
+                        </p>
 
-            </div>
+                    </div>
+                </CardContent>
+            </Card>
         </Grid>
     )
 }

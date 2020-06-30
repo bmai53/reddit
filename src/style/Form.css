@@ -2,6 +2,7 @@
     color: black;
     background-color: white;
     font-family: Roboto;
+    margin-top: 25px;
 }
 
 .Inputs{
@@ -10,11 +11,6 @@
 
 .TabBar{
     background-color: #CEE3F8;
-}
-
-
-.sortOrderLabel{
-    font-size: 10px;
 }
 
 
@@ -40,17 +36,6 @@
     border-color: #0077D6;
     background:white;
     color: #0077D6;
+    cursor: pointer;
 }
-
-
-
-/* @media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2){
-
-    .SearchButton{
-        width: 100vw
-    }
-} */
 
