@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/reddit-search/precache-manifest.8457e6cf7e2c755d399357655e676a24.js"
+  "/reddit-search/precache-manifest.d8b1975a8e028c9771ceb9a282c2540e.js"
 );
 
 self.addEventListener('message', (event) => {
