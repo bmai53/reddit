@@ -10,9 +10,10 @@ This app allows the user to search for Reddit posts and comments using [pushshif
 #### To Do:
 - add dark mode
 - add header/footer
-- add additional filtering + rework form layout
+- add additional filtering
 
 #### Done:
 - mimic Reddit colours
 - add mobile responsiveness
 - fixed buggy material ui components (datepicker)
+- reworked form layout
