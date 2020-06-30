@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import '../style/Comment.css'
 
 import { Grid, Card, CardContent } from '@material-ui/core'
@@ -10,7 +11,7 @@ const Comment = (props) => {
     const postLink = postInfo.postLink
 
     let commentDate = new Date(data.created_utc * 1000)
-    commentDate = commentDate.getFullYear().toString() + '/' + (commentDate.getMonth() + 1).toString() + '/' + commentDate.getDate().toString()
+    commentDate = moment(commentDate).format('LL')
 
     let title = postInfo.postTitle.replace(/&amp;/g, '&')
     if (title.length > 50) {
@@ -48,11 +49,11 @@ const Comment = (props) => {
                             <p>{data.body}</p>
                         </div>
                         <p className="BottomLine">
-                            <span className="Date">Posted on {commentDate.toString()}</span>
+                            <span className="Date">Posted on {commentDate}</span>
                             <span className="SpanLink">
-                                <button href={postLink + data.id} target="_blank" rel="noopener noreferrer" className="Link">
+                                <a href={postLink + data.id} target="_blank" rel="noopener noreferrer" className="Link">
                                     link
-                                </button>
+                                </a>
                             </span>
                         </p>
 

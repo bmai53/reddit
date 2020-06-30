@@ -33,6 +33,6 @@
 }
 .Link{
     float: right;
-    text-align: center;
+    font-size: calc(5px + 1vmin);
 }
 

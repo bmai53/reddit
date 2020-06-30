@@ -35,7 +35,8 @@ a:hover{
 }
 
 .Link{
-  text-align: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
   text-decoration: none;
   width: 75px;

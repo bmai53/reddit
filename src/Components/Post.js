@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import '../style/Post.css'
 import no_preview from '../images/no_preview.png'
 
@@ -15,8 +16,7 @@ const Post = (props) => {
     }
 
     let postDate = new Date(data.created_utc * 1000)
-    postDate = postDate.getFullYear().toString() + '/' + (postDate.getMonth() + 1).toString() + '/' + postDate.getDate().toString()
-
+    postDate = moment(postDate).format('LL')
     const postDimensions = {
         xs: 11,
         sm: 11,
@@ -46,21 +46,24 @@ const Post = (props) => {
                             </span>
                             <span> </span>
                             <span className="Subreddit">
-                                to <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer">r/{data.subreddit}</a>
+                                at <a href={`https://www.reddit.com/r/${data.subreddit}`} target="_blank" rel="noopener noreferrer">r/{data.subreddit}</a>
                             </span>
                             <span> </span>
                             <span className="Date">
-                                on {postDate.toString()}
+                                on {postDate}
                             </span>
                         </p>
 
-                        <p className="Stats">
-                            <span>Comments: {data.num_comments} </span>
-                            <span>Score: {data.score}</span>
+                        <p className="NumComments Stats">
+                            Comments: {data.num_comments}
                         </p>
-                        <button className="Link" href={data.full_link} target="_blank" rel="noopener noreferrer" >
+                        <p className="Score Stats">
+                            Score: {data.score}
+                        </p>
+                        
+                        <a className="Link" href={data.full_link} target="_blank" rel="noopener noreferrer" >
                             link
-                        </button>
+                        </a>
                     </div>
                 </CardContent>
             </Card>
