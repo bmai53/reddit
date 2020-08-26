@@ -7,7 +7,6 @@ import Comment from './Comment'
 import '../style/Form.css'
 // import useStyles from '../style/styles'
 
-import repoLink from '../images/github-corner.png'
 
 import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem, Button, Collapse, Card, CardContent } from '@material-ui/core'
 
@@ -157,10 +156,6 @@ const Form = () => {
 
     return (
         <div>
-            <a href="https://github.com/bmai53/reddit-search">
-                <img className="repoLink" alt="github logo" src={repoLink} />
-            </a>
-
             <Grid container direction="column" alignItems="center" spacing={3}>
 
                 <Grid item {...formDimensions}>
