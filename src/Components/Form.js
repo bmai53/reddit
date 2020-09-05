@@ -8,7 +8,7 @@ import '../style/Form.css'
 // import useStyles from '../style/styles'
 
 
-import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem, Button, Collapse, Card, CardContent } from '@material-ui/core'
+import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem, Button, Collapse, Card, CardContent, Typography } from '@material-ui/core'
 
 const Form = () => {
 
@@ -241,7 +241,10 @@ const Form = () => {
                                                 {isLoading ? 'Searching ...' : 'Search'}
                                             </button>
                                         </Grid>
-
+                                        
+                                        <Grid item container spacing={3} justify="center" alignItems="center">
+                                            {contentList.length > 0 ? <Typography variant='h4'>Number of Results: {contentList.length}</Typography> : <div></div>}
+                                        </Grid>
                                     </Grid>
                                 </div>
 
