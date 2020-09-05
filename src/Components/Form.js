@@ -64,10 +64,10 @@ const Form = () => {
 
         axios.get(apiEndPoint, {
             params: {
-                author: author,
-                title: title,
-                q: searchTerm,
-                subreddit: subreddit,
+                author: author.trim(),
+                title: title.trim(),
+                q: searchTerm.trim(),
+                subreddit: subreddit.trim(),
                 size: size,
                 after: after,
                 before: before,
