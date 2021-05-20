@@ -8,7 +8,8 @@ import '../style/Form.css'
 // import useStyles from '../style/styles'
 
 
-import { Tabs, Tab, Grid, TextField, Select, InputLabel, FormControl, MenuItem, Button, Collapse, Card, CardContent, Typography } from '@material-ui/core'
+import { Tabs, Tab, Grid, GridSize, TextField, Select, InputLabel, FormControl, MenuItem, Button, Collapse, Card, CardContent, Typography } from '@material-ui/core'
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 
 const Form = () => {
 
@@ -31,9 +32,9 @@ const Form = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [apiResponse, setAPIResponse] = useState([])
 
-    const [contentList, setContentList] = useState([])
+    const [contentList, setContentList] = useState<Array<any>>([])
 
-    const handleChange = (event, newValue) => {
+    const handleChange: any = (event: any, newValue: any) => {
         const { name, value } = event.target
 
         // material ui tabs
@@ -54,7 +55,7 @@ const Form = () => {
         if (name === "sort") { setSort(value) }
     }
 
-    const apiQuery = (event) => {
+    const apiQuery = (event: any) => {
         setIsLoading(true)
         event.preventDefault()
 
@@ -89,13 +90,13 @@ const Form = () => {
     // but the whole point of using useEffect was so that the contentList would no rerender after selecting another searchType
     useEffect(() => {
         if (searchSubmissions) {
-            const newSubmissions = apiResponse.map(data => <Post key={data.id} data={data} />)
+            const newSubmissions = apiResponse.map((data: any) => <Post key={data.id} data={data} />)
             setContentList(newSubmissions)
             setIsLoading(false)
         }
         else {
             // commentPost is the post that the comment is from
-            const commentPostLinkList = apiResponse.map(data => data.link_id)
+            const commentPostLinkList = apiResponse.map((data: any) => data.link_id)
             const commentPostLinkString = commentPostLinkList.join(',')
             // console.log("commentLinkString", commentPostLinkString)
             axios.get(`https://api.pushshift.io/reddit/search/submission/?ids=${commentPostLinkString}`)
@@ -103,8 +104,8 @@ const Form = () => {
                     // apiResponse contains comment data
                     // posts contains parent post data
                     const posts = response.data.data
-                    const postInfoArray = apiResponse.map((data) => {
-                        const postInfo = posts.find(element => ("t3_" + element.id) === data.link_id)
+                    const postInfoArray = apiResponse.map((data: any) => {
+                        const postInfo = posts.find((element: any) => ("t3_" + element.id) === data.link_id)
                         return (
                             {
                                 postId: data.link_id,
@@ -117,7 +118,7 @@ const Form = () => {
 
                     // use pairPostIdPostLinkArray to find correct post data to pass into each Comment component
                     const newComments = apiResponse.map(
-                        data => <Comment
+                        (data: any) => <Comment
                             key={data.id}
                             data={data}
                             postInfoArray={postInfoArray}
@@ -146,7 +147,7 @@ const Form = () => {
     // for material ui styles
     // const classes = useStyles()
 
-    const formDimensions = {
+    const formDimensions: Record<Breakpoint, GridSize> = {
         xs: 10,
         sm: 10,
         md: 6,
@@ -237,7 +238,7 @@ const Form = () => {
                                         </Collapse>
 
                                         <Grid item container>
-                                            <button type="submit" fullWidth className="SearchButton">
+                                            <button type="submit" className="SearchButton">
                                                 {isLoading ? 'Searching ...' : 'Search'}
                                             </button>
                                         </Grid>

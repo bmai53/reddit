@@ -3,9 +3,10 @@ import moment from 'moment'
 import '../style/Post.css'
 import no_preview from '../images/no_preview.png'
 
-import { Grid, Card, CardContent } from '@material-ui/core'
+import { Grid, Card, CardContent, GridSize } from '@material-ui/core'
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 
-const Post = (props) => {
+const Post = (props: any) => {
 
     const data = props.data
     let previewImg = data.preview
@@ -15,9 +16,10 @@ const Post = (props) => {
         previewImg = previewImg.images[0].source.url.replace(/&amp;/g, '&')
     }
 
-    let postDate = new Date(data.created_utc * 1000)
+    let postDate:string = (new Date(data.created_utc * 1000)).toString()
     postDate = moment(postDate).format('LL')
-    const postDimensions = {
+
+    const postDimensions: Record<Breakpoint, GridSize> = {
         xs: 11,
         sm: 11,
         md: 7,

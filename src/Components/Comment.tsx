@@ -2,15 +2,16 @@ import React from 'react'
 import moment from 'moment'
 import '../style/Comment.css'
 
-import { Grid, Card, CardContent } from '@material-ui/core'
+import { Grid, Card, CardContent, GridSize } from '@material-ui/core'
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints'
 
-const Comment = (props) => {
+const Comment = (props: any) => {
     const data = props.data
 
-    const postInfo = props.postInfoArray.find(element => element.postId === data.link_id)
+    const postInfo = props.postInfoArray.find((element: { postId: any }) => element.postId === data.link_id)
     const postLink = postInfo.postLink
 
-    let commentDate = new Date(data.created_utc * 1000)
+    let commentDate: string = (new Date(data.created_utc * 1000)).toString()
     commentDate = moment(commentDate).format('LL')
 
     let title = postInfo.postTitle.replace(/&amp;/g, '&')
@@ -18,7 +19,7 @@ const Comment = (props) => {
         title = title.substring(0, 47).concat('...')
     }
 
-    const commentDimensions = {
+    const commentDimensions: Record<Breakpoint, GridSize> = {
         xs: 11,
         sm: 11,
         md: 7,
