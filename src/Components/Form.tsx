@@ -3,6 +3,7 @@ import axios from "axios";
 import loading from "../images/loading.svg";
 import Post from "./Post";
 import Comment from "./Comment";
+import { apiQuery } from "../apiQuery";
 
 import "../style/Form.css";
 // import useStyles from '../style/styles'
@@ -43,7 +44,7 @@ const Form = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [apiResponse, setAPIResponse] = useState([]);
+  const [apiResponse, setAPIResponse] = useState<Array<any>>([]);
 
   const [contentList, setContentList] = useState<Array<any>>([]);
 
@@ -89,31 +90,25 @@ const Form = () => {
     }
   };
 
-  const apiQuery = (event: any) => {
+  const handleSubmit = (event: any) => {
     setIsLoading(true);
     event.preventDefault();
 
-    const apiEndPoint = searchSubmissions
-      ? "https://api.pushshift.io/reddit/search/submission"
-      : "https://api.pushshift.io/reddit/search/comment";
-
-    axios
-      .get(apiEndPoint, {
-        params: {
-          author: author.trim(),
-          title: title.trim(),
-          q: searchTerm.trim(),
-          subreddit: subreddit.trim(),
-          size: size,
-          after: after,
-          before: before,
-          sort: sort,
-          sort_type: sortType,
-        },
-      })
+    apiQuery({
+      searchSubmission: searchSubmissions,
+      author,
+      title,
+      searchTerm,
+      subreddit,
+      size,
+      after,
+      before,
+      sort,
+      sortType,
+    })
       .then((response) => {
-        setAPIResponse(response.data.data);
-        // console.log(response.data.data)
+        // console.log(response);
+        setAPIResponse(response);
       })
       .catch((error) => {
         console.log(error);
@@ -198,7 +193,7 @@ const Form = () => {
     <div>
       <Grid container direction='column' alignItems='center' spacing={3}>
         <Grid item {...formDimensions}>
-          <form onSubmit={apiQuery} className='Form'>
+          <form onSubmit={handleSubmit} className='Form'>
             <div className='TabBar'>
               <Tabs
                 value={searchOption}
