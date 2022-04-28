@@ -7,11 +7,23 @@ import { Grid, Card, CardContent, GridSize } from "@material-ui/core";
 import { Breakpoint } from "@material-ui/core/styles/createBreakpoints";
 
 interface IProps {
-  data: Record<string, any>;
+  data: IPost;
+}
+
+export interface IPost {
+  preview: any | undefined;
+  title: string;
+  created_utc: number;
+  url: string;
+  author: string;
+  subreddit: string;
+  num_comments: number;
+  score: number;
+  full_link: string;
 }
 
 const Post: React.FC<IProps> = (props: IProps) => {
-  const data = props.data;
+  const data: IPost = props.data;
   let previewImg = data.preview;
   let title = data.title.replace(/&amp;/g, "&");
 

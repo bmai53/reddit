@@ -5,16 +5,36 @@ import "../style/Comment.css";
 import { Grid, Card, CardContent, GridSize } from "@material-ui/core";
 import { Breakpoint } from "@material-ui/core/styles/createBreakpoints";
 
-const Comment = (props: any) => {
+interface IProps {
+  data: IComment;
+  postInfo?: IPostInfo;
+}
+
+export interface IComment {
+  author: string;
+  created_utc: number;
+  subreddit: string;
+  score: number;
+  body: string;
+  id: string;
+}
+
+export interface IPostInfo {
+  postId: string;
+  postLink: string;
+  postTitle: string;
+}
+
+const Comment = (props: IProps) => {
   const data = props.data;
   const postInfo = props.postInfo;
-  const postLink = postInfo.postLink;
+  const postLink = postInfo?.postLink;
 
   let commentDate: string = new Date(data.created_utc * 1000).toString();
   commentDate = moment(commentDate).format("LL");
 
-  let title = postInfo.postTitle.replace(/&amp;/g, "&");
-  if (title.length > 50) {
+  let title = postInfo?.postTitle.replace(/&amp;/g, "&");
+  if (title && title.length > 50) {
     title = title.substring(0, 47).concat("...");
   }
 

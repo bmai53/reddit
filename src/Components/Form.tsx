@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import loading from "../images/loading.svg";
 import Post from "./Post";
-import Comment from "./Comment";
+import Comment, { IPostInfo } from "./Comment";
 import { apiQuery } from "../apiQuery";
 
 import "../style/Form.css";
@@ -138,17 +138,27 @@ const Form = () => {
           // apiResponse contains comment data
           // posts contains parent post data
           const posts = response.data.data;
-          const postInfoArray = apiResponse.map((data: any) => {
-            const postInfo = posts.find(
+
+          const postInfoArray: IPostInfo[] = apiResponse.map((data: any) => {
+            const foundPost = posts.find(
               (element: any) => "t3_" + element.id === data.link_id
             );
+
+            if (foundPost === undefined) {
+              return {
+                postId: "",
+                postLink: "",
+                postTitle: "",
+              };
+            }
+
             return {
               postId: data.link_id,
-              postLink: postInfo.full_link,
-              postTitle: postInfo.title,
+              postLink: foundPost.full_link,
+              postTitle: foundPost.title,
             };
           });
-          // console.log(postInfoArray)
+          // console.log(postInfoArray);
 
           // use pairPostIdPostLinkArray to find correct post data to pass into each Comment component
           const newComments = apiResponse.map((data: any) => (
