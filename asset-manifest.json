@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/reddit/static/css/main.849fcc87.chunk.css",
-    "main.js": "/reddit/static/js/main.bbfd03d9.chunk.js",
-    "main.js.map": "/reddit/static/js/main.bbfd03d9.chunk.js.map",
+    "main.js": "/reddit/static/js/main.71b7c72f.chunk.js",
+    "main.js.map": "/reddit/static/js/main.71b7c72f.chunk.js.map",
     "runtime-main.js": "/reddit/static/js/runtime-main.d32f49b2.js",
     "runtime-main.js.map": "/reddit/static/js/runtime-main.d32f49b2.js.map",
     "static/js/2.c27467bc.chunk.js": "/reddit/static/js/2.c27467bc.chunk.js",
     "static/js/2.c27467bc.chunk.js.map": "/reddit/static/js/2.c27467bc.chunk.js.map",
     "index.html": "/reddit/index.html",
-    "precache-manifest.df7c32360954031ad7fd1cc45d482fbd.js": "/reddit/precache-manifest.df7c32360954031ad7fd1cc45d482fbd.js",
+    "precache-manifest.58a2e52ff449a8fc34288d4a1fc7a025.js": "/reddit/precache-manifest.58a2e52ff449a8fc34288d4a1fc7a025.js",
     "service-worker.js": "/reddit/service-worker.js",
     "static/css/main.849fcc87.chunk.css.map": "/reddit/static/css/main.849fcc87.chunk.css.map",
     "static/js/2.c27467bc.chunk.js.LICENSE.txt": "/reddit/static/js/2.c27467bc.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.d32f49b2.js",
     "static/js/2.c27467bc.chunk.js",
     "static/css/main.849fcc87.chunk.css",
-    "static/js/main.bbfd03d9.chunk.js"
+    "static/js/main.71b7c72f.chunk.js"
   ]
 }
