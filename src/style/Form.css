@@ -1,41 +1,15 @@
-.Form{
-    color: black;
-    background-color: white;
-    font-family: Roboto;
-    margin-top: 25px;
+.Form {
+  color: black;
+  background-color: white;
+  font-family: Roboto;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
-.Inputs{
-    padding: 25px;
+.Inputs {
+  padding: 25px;
 }
 
-.TabBar{
-    background-color: #CEE3F8;
+.TabBar {
+  background-color: #cee3f8;
 }
-
-
-.SearchButton{
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.75;
-    letter-spacing: 0.02857em;
-    text-transform: uppercase;
-
-    font-size: 20px;
-    margin: 15px auto 15px auto;
-    width: 600px;
-    height: 50px;
-    background: #0077D6;
-    color: white;
-    border-radius: 5px;
-    border: solid 1px white;
-}
-
-.SearchButton:hover{
-    border-color: #0077D6;
-    background:white;
-    color: #0077D6;
-    cursor: pointer;
-}
-
