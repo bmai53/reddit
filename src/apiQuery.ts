@@ -30,8 +30,8 @@ export const apiQuery = (data: IApiQuery): Promise<IApiResult> => {
         size: data.size,
         after: data.after,
         before: data.before,
-        sort: data.sort,
-        sort_type: data.sortType,
+        order: data.sort,
+        sort: data.sortType,
       },
     })
     .then((response) => {
